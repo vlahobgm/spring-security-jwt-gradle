@@ -13,14 +13,14 @@ public class AuthenticationRequest {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private long id;
-  private String userName;
+  private String username;
   private String password;
 
   public AuthenticationRequest() {
   }
 
   public AuthenticationRequest(String userName, String password) {
-    this.userName = userName;
+    this.username = userName;
     this.password = password;
   }
 
@@ -32,12 +32,12 @@ public class AuthenticationRequest {
     this.id = id;
   }
 
-  public String getUserName() {
-    return userName;
+  public String getUsername() {
+    return username;
   }
 
-  public void setUserName(String userName) {
-    this.userName = userName;
+  public void setUsername(String userName) {
+    this.username = userName;
   }
 
   public String getPassword() {

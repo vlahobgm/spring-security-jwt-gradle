@@ -30,4 +30,16 @@ public class MovieDatabseApiController {
     Response<MovieResults> response = call.execute();
     return ResponseEntity.ok(response.body());
   }
+
+  @GetMapping("/toprated")
+  public ResponseEntity getTopRatedMovies() throws IOException {
+    Retrofit retrofit = new Retrofit.Builder()
+        .baseUrl(BASE_URL)
+        .addConverterFactory(GsonConverterFactory.create())
+        .build();
+    ApiInterface apiInterface = retrofit.create(ApiInterface.class);
+    Call<MovieResults> call = apiInterface.getTopRatedMovies(API_KEY, LANGUAGE, PAGE);
+    Response<MovieResults> response = call.execute();
+    return ResponseEntity.ok(response.body());
+  }
 }

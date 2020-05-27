@@ -12,4 +12,12 @@ public interface ApiInterface {
       @Query("language") String language,
       @Query("page") int page
   );
+
+  @GET("/3/movie/top_rated")
+  Call<MovieResults> getTopRatedMovies(
+      @Query("api_key") String apiKey,
+      @Query("language") String language,
+      @Query("page") int page
+  );
+
 }
