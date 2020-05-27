@@ -1,4 +1,4 @@
-package com.greenfoxacademy.springsecurityjwtgradle;
+package com.greenfoxacademy.springsecurityjwtgradle.controllers;
 
 import com.greenfoxacademy.springsecurityjwtgradle.models.AuthenticationRequest;
 import com.greenfoxacademy.springsecurityjwtgradle.models.AuthenticationResponse;
