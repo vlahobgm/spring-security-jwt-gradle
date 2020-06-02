@@ -1,8 +1,12 @@
 package com.greenfoxacademy.springsecurityjwtgradle.controllers;
 
+import com.greenfoxacademy.springsecurityjwtgradle.models.Movie;
 import com.greenfoxacademy.springsecurityjwtgradle.models.MovieResults;
 import com.greenfoxacademy.springsecurityjwtgradle.services.ApiInterface;
+import com.greenfoxacademy.springsecurityjwtgradle.services.MovieService;
 import java.io.IOException;
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,6 +17,13 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 @RestController
 public class MovieDatabseApiController {
+
+  private MovieService movieService;
+
+  @Autowired
+  public MovieDatabseApiController(MovieService movieService) {
+    this.movieService = movieService;
+  }
 
   public static String BASE_URL = "https://api.themoviedb.org";
   private String API_KEY = "9e94e1edcba91f1fdd9b8ee36869a03b";
@@ -40,6 +51,8 @@ public class MovieDatabseApiController {
     ApiInterface apiInterface = retrofit.create(ApiInterface.class);
     Call<MovieResults> call = apiInterface.getTopRatedMovies(API_KEY, LANGUAGE, PAGE);
     Response<MovieResults> response = call.execute();
+    List<Movie> movies = response.body().getMovies();
+    movieService.saveMovies(movies);
     return ResponseEntity.ok(response.body());
   }
 }

@@ -1,6 +1,6 @@
 package com.greenfoxacademy.springsecurityjwtgradle.controllers;
 
-import com.greenfoxacademy.springsecurityjwtgradle.models.AuthenticationRequest;
+import com.greenfoxacademy.springsecurityjwtgradle.models.dao.Users;
 import com.greenfoxacademy.springsecurityjwtgradle.models.AuthenticationResponse;
 import com.greenfoxacademy.springsecurityjwtgradle.services.MyUserDetailsService;
 import com.greenfoxacademy.springsecurityjwtgradle.utils.JwtUtil;
@@ -37,17 +37,17 @@ public class MainController {
   }
 
   @PostMapping("/authenticate")
-  public ResponseEntity createAuthenticationToken(@RequestBody AuthenticationRequest authenticationRequest) throws Exception {
+  public ResponseEntity createAuthenticationToken(@RequestBody Users users) throws Exception {
     try {
       authenticationManager.authenticate(
-          new UsernamePasswordAuthenticationToken(authenticationRequest
-              .getUsername(), authenticationRequest.getPassword())
+          new UsernamePasswordAuthenticationToken(users
+              .getUsername(), users.getPassword())
       );
     } catch (BadCredentialsException e) {
       throw new Exception("Incorrect username or password", e);
     }
     UserDetails userDetails =
-        userDetailsService.loadUserByUsername(authenticationRequest.getUsername());
+        userDetailsService.loadUserByUsername(users.getUsername());
     String jwt = jwtUtil.generateToken(userDetails);
     return ResponseEntity.ok(new AuthenticationResponse(jwt));
   }

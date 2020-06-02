@@ -1,55 +1,42 @@
-package com.greenfoxacademy.springsecurityjwtgradle.models;
+package com.greenfoxacademy.springsecurityjwtgradle.models.dao;
 
 import java.util.List;
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
-public class Result {
-
-  @SerializedName("popularity")
-  @Expose
+@Entity
+@Table(name = "movies")
+public class MovieDAO {
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long movieId;
   private Double popularity;
-  @SerializedName("vote_count")
-  @Expose
   private Integer voteCount;
-  @SerializedName("video")
-  @Expose
   private Boolean video;
-  @SerializedName("poster_path")
-  @Expose
   private String posterPath;
-  @SerializedName("id")
-  @Expose
   private Integer id;
-  @SerializedName("adult")
-  @Expose
   private Boolean adult;
-  @SerializedName("backdrop_path")
-  @Expose
   private String backdropPath;
-  @SerializedName("original_language")
-  @Expose
   private String originalLanguage;
-  @SerializedName("original_title")
-  @Expose
   private String originalTitle;
-  @SerializedName("genre_ids")
-  @Expose
-  private List<Integer> genreIds = null;
-  @SerializedName("title")
-  @Expose
+  private String genreIds;
   private String title;
-  @SerializedName("vote_average")
-  @Expose
   private Double voteAverage;
-  @SerializedName("overview")
-  @Expose
   private String overview;
-  @SerializedName("release_date")
-  @Expose
   private String releaseDate;
 
-  public Result() {
+  public MovieDAO() {
+  }
+
+  public Long getMovieId() {
+    return movieId;
+  }
+
+  public void setMovieId(Long movieId) {
+    this.movieId = movieId;
   }
 
   public Double getPopularity() {
@@ -124,11 +111,11 @@ public class Result {
     this.originalTitle = originalTitle;
   }
 
-  public List<Integer> getGenreIds() {
+  public String getGenreIds() {
     return genreIds;
   }
 
-  public void setGenreIds(List<Integer> genreIds) {
+  public void setGenreIds(String genreIds) {
     this.genreIds = genreIds;
   }
 

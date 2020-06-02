@@ -1,4 +1,4 @@
-package com.greenfoxacademy.springsecurityjwtgradle;
+package com.greenfoxacademy.springsecurityjwtgradle.security;
 
 import com.greenfoxacademy.springsecurityjwtgradle.filters.JwtRequestFilter;
 import org.springframework.beans.factory.annotation.Autowired;

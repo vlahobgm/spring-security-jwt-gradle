@@ -1,7 +1,7 @@
 package com.greenfoxacademy.springsecurityjwtgradle.services;
 
-import com.greenfoxacademy.springsecurityjwtgradle.models.AuthenticationRequest;
-import com.greenfoxacademy.springsecurityjwtgradle.repositories.AuthenticationRequestRepository;
+import com.greenfoxacademy.springsecurityjwtgradle.models.dao.Users;
+import com.greenfoxacademy.springsecurityjwtgradle.repositories.UsersRepository;
 import java.util.Collections;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
@@ -14,12 +14,12 @@ import org.springframework.stereotype.Service;
 public class MyUserDetailsService implements UserDetailsService {
 
   @Autowired
-  private AuthenticationRequestRepository authenticationRequestRepository;
+  private UsersRepository usersRepository;
 
   @Override
   public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
     //return new User("foo", "foo", new ArrayList<>());
-    AuthenticationRequest user = authenticationRequestRepository.findByUsername(username);
+    Users user = usersRepository.findByUsername(username);
     if (user == null) {
       throw new UsernameNotFoundException(username);
     }

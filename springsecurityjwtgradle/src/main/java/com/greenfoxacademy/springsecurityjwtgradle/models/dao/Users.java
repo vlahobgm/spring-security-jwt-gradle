@@ -1,4 +1,4 @@
-package com.greenfoxacademy.springsecurityjwtgradle.models;
+package com.greenfoxacademy.springsecurityjwtgradle.models.dao;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,7 +8,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "users")
-public class AuthenticationRequest {
+public class Users {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,10 +16,10 @@ public class AuthenticationRequest {
   private String username;
   private String password;
 
-  public AuthenticationRequest() {
+  public Users() {
   }
 
-  public AuthenticationRequest(String userName, String password) {
+  public Users(String userName, String password) {
     this.username = userName;
     this.password = password;
   }
